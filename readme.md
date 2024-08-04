@@ -75,3 +75,7 @@ The deploy runs 3 tasks
 ## Warnings
 
 Updating the zip files in S3 does not automatically update the lambda function. **The function has to be redeployed in order to use the updated code**
+
+## Improvements
+
+In order to easily view and download files from EFS I have been using: <https://aws.amazon.com/solutions/implementations/simple-file-manager-for-amazon-efs/>
