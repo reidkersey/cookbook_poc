@@ -1,17 +1,3 @@
-Lambda functions should be in their respective folder named LambdaFunctions_<functionName>
-
-Run `docker build --tag 'ubuntu' . && docker cp $(docker create --name tc ubuntu):/tmp/zips ./zips && docker rm tc` to create the zips in the zips folder
-
-Run `aws s3 sync LambdaFunctions_deploy s3://inmoment.codestore` to deploy the S3 Code
-
-Run `cd terraform` to switch into the terraform directory
-Run `terraform apply` to redeploy the lambda functions
-
-Note: Lambda execution role for async needs lambda invoke permissions
-
-/// new docker function
-`docker rm -f metrics && docker rmi -f metrics &&  docker build --no-cache --tag 'metrics' . && docker run -t -d --name=metrics metrics && docker wait metrics && docker cp metrics:/tmp/zips ./`
-
 # Read Me
 
 This repo is a proof of concept for using terraform, AWS API Gateway, AWS Lambda, and AWS EFS to create a system for doing code checking, metrics, and storing data in an SQLite database.
@@ -86,4 +72,6 @@ The deploy runs 3 tasks
 - Sync the zips folder with an S3 bucket
 - Run the terraform command which creates the lambda functions with the zip files from S3, efs, and API gateway endpoints
 
-Note: Updating the zip files in S3 does not automatically update the lambda function. **The function has to be redeployed in order to use the updated code**
+## Warnings
+
+Updating the zip files in S3 does not automatically update the lambda function. **The function has to be redeployed in order to use the updated code**
